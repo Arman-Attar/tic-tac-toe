@@ -45,17 +45,18 @@ const gameController = (() => {
       return;
     }
 
-    console.log(gameBoard.getBoard());
 
     if (checkWinner(gameBoard.getBoard(), currentPlayer.marker)) {
-      console.log(`${currentPlayer.marker} wins!`);
+      alert(`${currentPlayer.marker} wins!`);
       gameOver = true;
+      restartGame()
       return;
     }
 
     if (checkTie(gameBoard.getBoard())) {
-      console.log("It's a tie");
+      alert("It's a tie");
       gameOver = true;
+      restartGame()
       return;
     }
 
@@ -88,7 +89,7 @@ const gameController = (() => {
     console.log("Game restarted!");
   };
 
-  return { switchPlayer, getCurrentPlayer, restartGame, playRound };
+  return { switchPlayer, getCurrentPlayer, restartGame, playRound, checkWinner, checkTie };
 })();
 
 function Player(marker) {
@@ -117,6 +118,8 @@ const DisplayController = (() => {
         gameController.playRound(index);
         renderBoard()
     }
+
+
     return {renderBoard}
 })()
 
